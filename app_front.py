@@ -1,3 +1,5 @@
+import os
+os.environ["YFINANCE_CACHE_DIR"] = "/tmp/yfinance_cache"  # Set a temporary cache directory
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -5,6 +7,9 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 import tensorflow as tf
+
+if not os.path.exists(os.environ["YFINANCE_CACHE_DIR"]):
+    os.makedirs(os.environ["YFINANCE_CACHE_DIR"])
 
 # Load the pre-trained BiLSTM model
 model = tf.keras.models.load_model("C:/Users/HP/bilstm_stock_model.h5")  # Adjust the path to your saved model
